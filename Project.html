@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects Gallery | Al Faris Furnishing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="project.css">
+    <title>Al Faris Furniture | Luxury Furniture Craftsmanship</title>
+    <meta name="description"
+        content="معرض الفارس للمفروشات يقدم أفضل تشكيلة من المجالس، والستائر  والسجاد و الباركية و بديل الخشب و بديل الرخام وورق جدران عصري في دبي. خبرة تزيد عن 25 سنة في عالم الأثاث الفاخر بأسعار تنافسية.">
+
+    <!-- Meta Description -->
+    <meta name="description"
+        content="Al Faris Furniture - Premium luxury furniture crafted since 1998. Explore our custom designs in Dubai.">
+
+    <!-- Viewport for Mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/logo/favicon-32x32.png" type="image/x-icon">
+
+    <!-- Language -->
+    <html lang="en">
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+
+        :root {
+            /* Colors */
+            --one: #f7f6e7;
+            --tow: #e7e6e1;
+            --gold: #d3bb60;
+            --dark: #314e52;
+
+            /* Fonts */
+
+
+            /* Spacing */
+            --section-padding: 80px;
+            --mobile-padding: 40px;
+
+            /* Transitions */
+            --transition-fast: 0.3s ease-in-out;
+            --transition-medium: 0.5s ease-in-out;
+            --transition-slow: 0.8s ease-in-out;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Anton", sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background-color: var(--one);
+            box-shadow: var(--shadow);
+            z-index: 100;
+            padding: 0.3rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            width: 40px;
+        }
+
+
+        header .call a {
+            text-decoration: none;
+
+
+            border-radius: 20px;
+
+
+        }
+
+        header .call a h2 {
+            font-size: 0.8rem;
+            color: var(--dark);
+            padding: 8px 15px;
+            border: 2px solid var(--dark);
+            border-radius: 8px;
+            transition: 0.5s ease-in-out;
+        }
+
+        header .call a h2:hover {
+            background-color: var(--gold);
+            border: 2px solid var(--gold);
+
+        }
+
+        .services-menu {
+            position: sticky;
+            top: 60px;
+            background-color: var(--tow);
+            padding: 1rem 2rem;
+            overflow-x: auto;
+            white-space: nowrap;
+            box-shadow: var(--shadow);
+            z-index: 90;
+            scrollbar-width: none;
+            justify-content: center;
+
+        }
+
+        .services-menu::-webkit-scrollbar {
+            display: none;
+        }
+
+        .services-container {
+            display: inline-flex;
+
+            gap: 0.5rem;
+
+        }
+
+        .service-btn {
+            background-color: transparent;
+            border: none;
+            color: var(--dark);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 700;
+            transition: 0.3s ease-in-out;
+
+        }
+
+        .service-btn:hover,
+        .service-btn.active {
+            background-color: var(--gold);
+            color: var(--dark);
+
+        }
+
+        .gallery {
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            transition: 0.5s ease-in-out;
+            border: 1px solid var(--deep-dark);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(32, 32, 32, 0.1);
+        }
+
+        .project-img {
+            width: 350px;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .project-info {
+            padding: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.1rem;
+            color: var(--mustard-yellow);
+        }
+
+        .project-desc {
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 80vh;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--deep-dark);
+            color: var(--cream);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                padding: 0.9rem 2.1rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                transition: var(--transition);
+            }
+
+            .logo {
+                text-decoration: none;
+            }
+
+            .logo img {
+                height: 35px;
+            }
+
+            header .call a {
+                text-decoration: none;
+            }
+
+            header .call a h2 {
+                font-size: 0.7rem;
+
+                padding: 6px 12px;
+
+                border-radius: 8px;
+                transition: 0.5s ease-in-out;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .services-menu {
+                top: 70px;
+
+            }
+
+            .project-card {
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: var(--shadow);
+                transition: var(--transition);
+                transition: 0.3s ease-in-out;
+            }
+
+            .project-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .project-img {
+                width: 450px;
+                height: 290px;
+                object-fit: cover;
+                display: block;
+            }
+
+            .project-info {
+                padding: 1rem;
+            }
+
+            .project-title {
+                font-size: 1.2rem;
+                margin-bottom: 0.1rem;
+
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="index.html.html" class="logo"><img src="img/logo/ALFARIS LOGO 3.svg" alt=""> </a>
+        <div class="call"><a href="tel:+971502528080" target="_blank">
+                <h2>CALL NAW</h2></i>
+            </a> </div>
+    </header>
+
+    <nav class="services-menu">
+        <div class="services-container">
+            <button class="service-btn active" data-category="all">All Projects</button>
+            <button class="service-btn" data-category="Custom-Sofas">Custom Sofas & Majlis</button>
+            <button class="service-btn" data-category="Custom-Curtains">Custom Curtains</button>
+            <button class="service-btn" data-category="wallpapers">Wallpapers</button>
+            <button class="service-btn" data-category="Carpet">Carpet</button>
+            <button class="service-btn" data-category="Flooring">Flooring</button>
+            <button class="service-btn" data-category="Wood-Marble">Wood and Marble Alternatives</button>
+        </div>
+    </nav>
+
+    <main class="gallery">
+        <!----------Custom Sofas & Majlis-------->
+        <div class="project-card" data-category="Custom-Sofas">
+            <img src="img/sofa/S25001.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Sofas & Majlis</h3>
+                <p class="project-desc">S25001</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Sofas">
+            <img src="img/sofa/S25002.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Sofas & Majlis</h3>
+                <p class="project-desc">S25002</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Sofas">
+            <img src="img/sofa/S25003.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Sofas & Majlis</h3>
+                <p class="project-desc">S25003</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Sofas">
+            <img src="img/sofa/S25004.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Sofas & Majlis</h3>
+                <p class="project-desc">S25004</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Sofas">
+            <img src="img/sofa/S25005.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Sofas & Majlis</h3>
+                <p class="project-desc">S25005</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Sofas">
+            <img src="img/sofa/S25006.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Sofas & Majlis</h3>
+                <p class="project-desc">S25006</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Sofas">
+            <img src="img/sofa/S25007.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Sofas & Majlis</h3>
+                <p class="project-desc">S25007</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Sofas">
+            <img src="img/sofa/S25008.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Sofas & Majlis</h3>
+                <p class="project-desc">S25008</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Sofas">
+            <img src="img/sofa/S25009.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Sofas & Majlis</h3>
+                <p class="project-desc">S25009</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Sofas">
+            <img src="img/sofa/S25010.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Sofas & Majlis</h3>
+                <p class="project-desc">S25010</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Sofas">
+            <img src="img/sofa/S25011.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Sofas & Majlis</h3>
+                <p class="project-desc">S25011</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Sofas">
+            <img src="img/sofa/S25012.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Sofas & Majlis</h3>
+                <p class="project-desc">S25012</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Sofas">
+            <img src="img/sofa/S25013.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Sofas & Majlis</h3>
+                <p class="project-desc">S25013</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Sofas">
+            <img src="img/sofa/S25014.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Sofas & Majlis</h3>
+                <p class="project-desc">S25014</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Sofas">
+            <img src="img/sofa/S25015.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Sofas & Majlis</h3>
+                <p class="project-desc">S25015</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Sofas">
+            <img src="img/sofa/S25016.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Sofas & Majlis</h3>
+                <p class="project-desc">S25016</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Sofas">
+            <img src="img/sofa/S25017.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Sofas & Majlis</h3>
+                <p class="project-desc">S25017</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Sofas">
+            <img src="img/sofa/S25018.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Sofas & Majlis</h3>
+                <p class="project-desc">S25018</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Sofas">
+            <img src="img/sofa/S25019.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Sofas & Majlis</h3>
+                <p class="project-desc">S25019</p>
+            </div>
+        </div>
+        <!----------------------------------------------------------------->
+        <!----------Custom-Curtains-------->
+
+        <!----------------------------------------------------------------->
+        <!----------Custom-Curtains-------->
+        <div class="project-card" data-category="Custom-Curtains">
+            <img src="img/curtains/c25001.png" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Curtains</h3>
+                <p class="project-desc">C25001</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Curtains">
+            <img src="img/curtains/c25002.png" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Curtains</h3>
+                <p class="project-desc">C25002</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Curtains">
+            <img src="img/curtains/c25003.png" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Curtains</h3>
+                <p class="project-desc">C25003</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Curtains">
+            <img src="img/curtains/c25004.png" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Curtains</h3>
+                <p class="project-desc">C25004</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Curtains">
+            <img src="img/curtains/c25006.jpg" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Curtains</h3>
+                <p class="project-desc">C25006</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Curtains">
+            <img src="img/curtains/c25007.png" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Curtains</h3>
+                <p class="project-desc">C25007</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Curtains">
+            <img src="img/curtains/c25008.png" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Curtains</h3>
+                <p class="project-desc">C25008</p>
+            </div>
+        </div>
+
+        <div class="project-card" data-category="Custom-Curtains">
+            <img src="img/curtains/c25009.png" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Curtains</h3>
+                <p class="project-desc">C25009</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Curtains">
+            <img src="img/curtains/c25010.png" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Curtains</h3>
+                <p class="project-desc">C25010</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Curtains">
+            <img src="img/curtains/c25012.png" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Curtains</h3>
+                <p class="project-desc">C25012</p>
+            </div>
+        </div>
+
+        <div class="project-card" data-category="Custom-Curtains">
+            <img src="img/curtains/c25013.png" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Curtains</h3>
+                <p class="project-desc">C25013</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Curtains">
+            <img src="img/curtains/c25014.png" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Curtains</h3>
+                <p class="project-desc">C25014</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Curtains">
+            <img src="img/curtains/c25015.png" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Curtains</h3>
+                <p class="project-desc">C25015</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Curtains">
+            <img src="img/curtains/c25016.png" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Curtains</h3>
+                <p class="project-desc">C25016</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Custom-Curtains">
+            <img src="img/curtains/c25017.png" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Curtains</h3>
+                <p class="project-desc">C25017</p>
+            </div>
+        </div>
+        <!----------------------------------------------------------------->
+        <!----------wallpapers-------->
+        <div class="project-card" data-category="wallpapers">
+            <img src="img/wallpaper/w25001.png" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wallpaper</h3>
+                <p class="project-desc">w25001</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="wallpapers">
+            <img src="img/wallpaper/w25002.png" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wallpaper</h3>
+                <p class="project-desc">w25002</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="wallpapers">
+            <img src="img/wallpaper/w25003.png" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wallpaper</h3>
+                <p class="project-desc">w25003</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="wallpapers">
+            <img src="img/wallpaper/w25004.png" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wallpaper</h3>
+                <p class="project-desc">w25004</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="wallpapers">
+            <img src="img/wallpaper/w25005.png" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wallpaper</h3>
+                <p class="project-desc">w25005</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="wallpapers">
+            <img src="img/wallpaper/w25006.png" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wallpaper</h3>
+                <p class="project-desc">w25006</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="wallpapers">
+            <img src="img/wallpaper/w25007.png" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wallpaper</h3>
+                <p class="project-desc">w25007</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="wallpapers">
+            <img src="img/wallpaper/w25008.png" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wallpaper</h3>
+                <p class="project-desc">w25008</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="wallpapers">
+            <img src="img/wallpaper/w25009.png" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wallpaper</h3>
+                <p class="project-desc">w25009</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="wallpapers">
+            <img src="img/wallpaper/w25010.png" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wallpaper</h3>
+                <p class="project-desc">w25010</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="wallpapers">
+            <img src="img/wallpaper/w25011.png" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wallpaper</h3>
+                <p class="project-desc">w25011</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="wallpapers">
+            <img src="img/wallpaper/w25012.png" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wallpaper</h3>
+                <p class="project-desc">w25012</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="wallpapers">
+            <img src="img/wallpaper/w25013.png" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wallpaper</h3>
+                <p class="project-desc">w25013</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="wallpapers">
+            <img src="img/wallpaper/w25014.png" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wallpaper</h3>
+                <p class="project-desc">w25014</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="wallpapers">
+            <img src="img/wallpaper/w25015.png" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wallpaper</h3>
+                <p class="project-desc">w25015</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="wallpapers">
+            <img src="img/wallpaper/w25016.png" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wallpaper</h3>
+                <p class="project-desc">w25016</p>
+            </div>
+        </div>
+        <!----------------------------------------------------------------->
+        <!----------Carpet-------->
+
+        <div class="project-card" data-category="Carpet">
+            <img src="img/carpet/p25001.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Carpet</h3>
+                <p class="project-desc">p25001</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Carpet">
+            <img src="img/carpet/p25002.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Carpet Tiles</h3>
+                <p class="project-desc">p25002</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Carpet">
+            <img src="img/carpet/p25003.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Carpet</h3>
+                <p class="project-desc">p25003</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Carpet">
+            <img src="img/carpet/p25004.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Carpet</h3>
+                <p class="project-desc">p25004</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Carpet">
+            <img src="img/carpet/p25005.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Carpet Tiles</h3>
+                <p class="project-desc">p25005</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Carpet">
+            <img src="img/carpet/p25006.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Carpet</h3>
+                <p class="project-desc">p25006</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Carpet">
+            <img src="img/carpet/p25007.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Carpet</h3>
+                <p class="project-desc">p25007</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Carpet">
+            <img src="img/carpet/p25009.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Carpet</h3>
+                <p class="project-desc">p25008</p>
+            </div>
+        </div>
+        <!----------------------------------------------------------------->
+        <!----------Wood and Marble Alternatives------->
+        <div class="project-card" data-category="Wood-Marble">
+            <img src="img/Wood and Marble/m25001.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wood and Marble Alternatives</h3>
+                <p class="project-desc">m25001</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Wood-Marble">
+            <img src="img/Wood and Marble/m25002.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wood and Marble Alternatives</h3>
+                <p class="project-desc">m25002</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Wood-Marble">
+            <img src="img/Wood and Marble/m25003.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wood and Marble Alternatives</h3>
+                <p class="project-desc">m25003</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Wood-Marble">
+            <img src="img/Wood and Marble/m25004.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wood and Marble Alternatives</h3>
+                <p class="project-desc">m25004</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Wood-Marble">
+            <img src="img/Wood and Marble/m25005.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wood and Marble Alternatives</h3>
+                <p class="project-desc">m25005</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Wood-Marble">
+            <img src="img/Wood and Marble/m25006.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wood and Marble Alternatives</h3>
+                <p class="project-desc">m25006</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Wood-Marble">
+            <img src="img/Wood and Marble/m25007.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wood and Marble Alternatives</h3>
+                <p class="project-desc">m25007</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Wood-Marble">
+            <img src="img/Wood and Marble/m25008.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wood and Marble Alternatives</h3>
+                <p class="project-desc">m25008</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Wood-Marble">
+            <img src="img/Wood and Marble/m25009.png" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wood and Marble Alternatives</h3>
+                <p class="project-desc">m25009</p>
+            </div>
+        </div>
+        <!----------------------------------------------------------------->
+
+        <!----------Flooring-------->
+
+        <div class="project-card" data-category="Flooring">
+            <img src="img/flooring/f25001.png" alt="Flooring" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Parquet Flooring</h3>
+                <p class="project-desc">f25001</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Flooring">
+            <img src="img/flooring/f25002.png" alt="Flooring" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Parquet Flooring</h3>
+                <p class="project-desc">f25002</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Flooring">
+            <img src="img/flooring/f25003.png" alt="Flooring" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Parquet Flooring</h3>
+                <p class="project-desc">f25003</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Flooring">
+            <img src="img/flooring/f25004.png" alt="Flooring" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Parquet Flooring</h3>
+                <p class="project-desc">f25004</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Flooring">
+            <img src="img/flooring/f25005.png" alt="Flooring" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Parquet Flooring</h3>
+                <p class="project-desc">f25005</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Flooring">
+            <img src="img/flooring/f25006.png" alt="Flooring" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">SPC Flooring</h3>
+                <p class="project-desc">f25006</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Flooring">
+            <img src="img/flooring/f25007.png" alt="Flooring" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Parquet Flooring</h3>
+                <p class="project-desc">f25007</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Flooring">
+            <img src="img/flooring/f25008.png" alt="Flooring" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">SPC Flooring</h3>
+                <p class="project-desc">f25008</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Flooring">
+            <img src="img/flooring/f25009.png" alt="Flooring" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">SPC Flooring</h3>
+                <p class="project-desc">f25009</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Flooring">
+            <img src="img/flooring/f25010.png" alt="Flooring" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Parquet Flooring</h3>
+                <p class="project-desc">f25010</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Flooring">
+            <img src="img/flooring/f25011.png" alt="Flooring" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">SPC Flooring</h3>
+                <p class="project-desc">f25011</p>
+            </div>
+        </div>
+        <!----------------------------------------------------------------->
+    </main>
+
+    <div class="lightbox">
+        <div class="lightbox-content">
+            <img class="lightbox-img" src="" alt="">
+            <button class="lightbox-close">&times;</button>
+            <button class="lightbox-nav lightbox-prev">&larr;</button>
+            <button class="lightbox-nav lightbox-next">&rarr;</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; Website created by Ahmed Al Gamal . <span id="year"></span></p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const serviceBtns = document.querySelectorAll('.service-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+        const lightbox = document.querySelector('.lightbox');
+        const lightboxImg = document.querySelector('.lightbox-img');
+        const lightboxClose = document.querySelector('.lightbox-close');
+        const lightboxPrev = document.querySelector('.lightbox-prev');
+        const lightboxNext = document.querySelector('.lightbox-next');
+
+        let currentImages = Array.from(document.querySelectorAll('.project-img')).map(img => img.src);
+        let currentIndex = 0;
+
+        function filterProjects(category) {
+            projectCards.forEach(card => {
+                const cat = card.getAttribute('data-category');
+                if (category === 'all' || cat === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        serviceBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                serviceBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.getAttribute('data-category');
+                filterProjects(filter);
+            });
+        });
+
+        document.querySelectorAll('.project-img').forEach((img, i) => {
+            img.addEventListener('click', () => {
+                currentImages = Array.from(document.querySelectorAll('.project-img')).map(img => img.src);
+                currentIndex = i;
+                lightboxImg.src = currentImages[currentIndex];
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        lightboxPrev.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+            lightboxImg.src = currentImages[currentIndex];
+        });
+
+        lightboxNext.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % currentImages.length;
+            lightboxImg.src = currentImages[currentIndex];
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            } else if (e.key === 'ArrowLeft') {
+                lightboxPrev.click();
+            } else if (e.key === 'ArrowRight') {
+                lightboxNext.click();
+            }
+        });
+        // تشغيل الفلتر بناءً على رابط URL مثل Project.html?filter=Custom-Curtains
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const filter = params.get('filter');
+            if (filter) {
+                const targetBtn = Array.from(serviceBtns).find(btn => btn.getAttribute('data-category') === filter);
+                if (targetBtn) {
+                    targetBtn.click(); // يفعل الفلتر ويخلي الزرار active ويعرض الصور الخاصة بيه
+                } else {
+                    filterProjects('all'); // fallback لو الفلتر مش موجود
+                }
+            } else {
+                filterProjects('all'); // default عند فتح الصفحة بدون فلاتر
+            }
+        });
+
+    </script>
+</body>
+
+</html>
