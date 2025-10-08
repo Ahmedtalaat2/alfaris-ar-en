@@ -66,54 +66,37 @@
             background-color: var(--one);
             box-shadow: var(--shadow);
             z-index: 100;
-            padding: 0.3rem 2.5rem;
+
+            width: 100%;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
+            text-align: center;
             transition: var(--transition);
         }
 
         .logo {
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+
+        }
+
+        .logo img {
             width: 40px;
-        }
-
-
-        header .call a {
-            text-decoration: none;
-
-
-            border-radius: 20px;
-
-
-        }
-
-        header .call a h2 {
-            font-size: 0.8rem;
-            color: var(--dark);
-            padding: 8px 15px;
-            border: 2px solid var(--dark);
-            border-radius: 8px;
-            transition: 0.5s ease-in-out;
-        }
-
-        header .call a h2:hover {
-            background-color: var(--gold);
-            border: 2px solid var(--gold);
-
+            padding: 15PX 0;
         }
 
         .services-menu {
             position: sticky;
-            top: 60px;
+            top: 80px;
             background-color: var(--tow);
             padding: 1rem 2rem;
             overflow-x: auto;
             white-space: nowrap;
             box-shadow: var(--shadow);
             z-index: 90;
+
             scrollbar-width: none;
             justify-content: center;
 
@@ -272,24 +255,12 @@
         }
 
         @media (max-width: 768px) {
-            header {
-                position: sticky;
-                top: 0;
-                z-index: 100;
-                padding: 0.9rem 2.1rem;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                transition: var(--transition);
-            }
-
-            .logo {
-                text-decoration: none;
-            }
 
             .logo img {
-                height: 35px;
+                width: 30px;
+                padding: 15PX 0;
             }
+
 
             header .call a {
                 text-decoration: none;
@@ -350,10 +321,10 @@
 
 <body>
     <header>
-        <a href="index.html.html" class="logo"><img src="img/logo/ALFARIS LOGO 3.svg" alt=""> </a>
-        <div class="call"><a href="tel:+971502528080" target="_blank">
+        <a href="index.html" class="logo"><img src="img/logo/ALFARIS LOGO 3.svg" alt=""> </a>
+        <!---   <div class="call"><a href="tel:+971502528080" target="_blank">
                 <h2>CALL NAW</h2></i>
-            </a> </div>
+            </a> </div>-->
     </header>
 
     <nav class="services-menu">
