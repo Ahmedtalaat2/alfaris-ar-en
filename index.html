@@ -64,6 +64,8 @@
 
                     <li><a href="#home" class="en-content">Home</a><a href="#home" class="ar-content"
                             style="display: none;">الرئيسيـة</a></li>
+                    <li><a href="ddddd.html" class="en-content">cal</a><a href="ddddd.html" class="ar-content"
+                            style="display: none;">احسب ستارتك </a></li>
                     <li><a href="#services" class="en-content">Services</a><a href="#services" class="ar-content"
                             style="display: none;">الخدمـات</a></li>
 
@@ -94,19 +96,16 @@
 
         <div class="hero-content">
             <div class="hero-logo">
-            </div>
-            <h1 class="en-content"> AlFaris Furnishings Since 1998 </h1>
-            <h1 class="ar-content" style="display: none;"> الفــارس للمفروشات من 1998 </h1>
-            <p class="en-content">
-                Custom-made curtains, sofas & rugs tailored to your home style.
-                Premium quality, fast service, and professional installation across the UAE. </p>
-            <p class="ar-content" style="display: none;"> نصمم ونفصل ستائر ومجالس وسجاد تناسب ذوقك وتفاصيل بيتك.
-                جودة عالية، خدمة سريعة، وتركيب احترافي داخل الإمارات. </p>
 
+                <h1 class="en-content"> AlFaris Furnishings Since 1998 </h1>
+                <h1 class="ar-content" style="display: none;"> الفــارس للمفروشات من 1998 </h1>
+                <p class="en-content">
+                    Custom-made curtains, sofas & rugs tailored to your home style.
+                    Premium quality, fast service, and professional installation across the UAE. </p>
+                <p class="ar-content" style="display: none;"> نصمم ونفصل ستائر ومجالس وسجاد تناسب ذوقك وتفاصيل بيتك.
+                    جودة عالية، خدمة سريعة، وتركيب احترافي داخل الإمارات. </p>
 
-            <!--- <div class="social-icons">
-
-
+                <!--- <div class="social-icons">
                 <a href="https://wa.me/+971502528080" aria-label="WhatsApp" target="_blank"><i
                         class="fab fa-whatsapp"></i></a>
                 <a href="https://www.facebook.com/profile.php?id=100069892736281&viewas=&show_switched_toast=false&show_switched_tooltip=false&is_tour_dismissed=false&is_tour_completed=false&show_podcast_settings=false&show_community_review_changes=false&should_open_composer=false&badge_type=NEW_MEMBER&show_community_rollback_toast=false&show_community_rollback=false&show_follower_visibility_disclosure=false&bypass_exit_warning=true"
@@ -114,12 +113,9 @@
                 <a href="https://www.instagram.com/alfaris_furnituree?igsh=OXY1NjBjcjF4c3o5" aria-label="instagram"
                     target="_blank"><i class="fa-brands fa-instagram"></i></a>
                 <a href="https://www.tiktok.com/@alfaris.furniture2?_t=ZS-8xzEvAGlwVW&_r=1" aria-label="TikTok"
-                    target="_blank"><i class="fab fa-tiktok"></i></a>
-            </div>-->
-
-
+                    target="_blank"><i class="fab fa-tiktok"></i></a>-->
+            </div>
         </div>
-
         <div class="slider-controls" id="sliderControls">
             <div class="slider-control active"></div>
             <div class="slider-control"></div>
@@ -148,7 +144,7 @@
             <div class="services-grid">
                 <!-- Service 1 -->
                 <div class="service-card">
-                    <div class="image"><img src="img/sofa/back-sofa.jpeg" alt=""></div>
+                    <div class="image"><img src="img/sofa/Golden-Dune-Main-Cover.webp" alt=""></div>
                     <div class="one">
                         <h3 class="en-content">custom Sofa & majlis</h3>
                         <h3 class="ar-content" style="display: none;"> تفصيل كنب و مجالس</h3>
@@ -162,7 +158,7 @@
 
                 <!-- Service 2 -->
                 <div class="service-card">
-                    <div class="image"><img src="img/curtains/back-curtains.png" alt=""></div>
+                    <div class="image"><img src="img/curtains/back-curtains.webp" alt=""></div>
                     <div class="one">
                         <h3 class="en-content">custom curtains </h3>
                         <h3 class="ar-content" style="display: none;">تفصيل الستائر</h3>
@@ -231,7 +227,100 @@
             </div>
         </div>
     </section>
+    <section class="cal">
+        <div class="container">
+            <div class="title">
+                <div class="one"></div>
+                <div class="tow">
+                    <h2 class="section-title ">احسب ستارتك </h2>
+                    <p class="section-title "> خدمه حصريا يقدمها الفارس لعملائة الكرام
+                    </p>
+                </div>
 
+            </div>
+            <main>
+                <div class="grid">
+                    <div class="left">
+                        <div class="card">
+                            <div class="section-title">تفاصيل الستارة</div>
+
+                            <!-- العرض -->
+                            <div style="margin-bottom:12px">
+                                <label class="small">1. عرض الستارة (سم)</label>
+                                <input type="number" id="inputWidth" step="1" min="10" placeholder="مثال: 200" />
+                                <div class="error" id="errWidth">من فضلك أدخل عرض صحيح.</div>
+                            </div>
+
+                            <!-- الارتفاع -->
+                            <div style="margin-bottom:12px">
+                                <label class="small">2. ارتفاع الستارة (سم)</label>
+                                <input type="number" id="inputHeight" step="1" min="10" placeholder="مثال: 270" />
+                                <div class="error" id="errHeight">من فضلك أدخل ارتفاع صحيح.</div>
+                            </div>
+
+                            <!-- نوع القماش -->
+                            <div style="margin-bottom:12px">
+                                <label class="small">3. نوع القماش</label>
+                                <div class="fabric-grid" id="fabricGrid"></div>
+                                <div class="error" id="errFabric">اختر نوع القماش.</div>
+                            </div>
+
+                            <!-- عرض رول القماش -->
+                            <div style="margin-bottom:12px">
+                                <label class="small">4. عرض رول القماش (سم)</label>
+                                <select id="fabricRoll">
+                                    <option value="140">140 سم</option>
+                                    <option value="280">280 سم</option>
+                                    <option value="320">320 سم</option>
+                                </select>
+                            </div>
+
+                            <!-- سعر المتر -->
+                            <div style="margin-bottom:12px">
+                                <label class="small">5. سعر متر القماش (اختياري)</label>
+                                <input type="number" id="manualPrice" placeholder="اتركه فارغ للحساب التلقائي" />
+                            </div>
+
+                            <!-- نسبة الكرمشة -->
+                            <div style="margin-bottom:12px">
+                                <label class="small">6. نسبة الكرمشة</label>
+                                <select id="selectGather">
+                                    <option value="1">سادة</option>
+                                    <option value="2">×2</option>
+                                    <option value="2.5" selected>×2.5</option>
+                                    <option value="3">×3</option>
+                                </select>
+                            </div>
+
+                            <!-- المنطقة -->
+                            <div style="margin-bottom:12px">
+                                <label class="small">7. اختر المنطقة (لتحديد سعر التفصيل)</label>
+                                <select id="selectArea"></select>
+                                <!----  <div class="note">اختيار "أخرى" يُحتسب كسعر تفصيل بعيد (250 درهم/متر).</div>-->
+                            </div>
+
+                            <div style="margin-top:12px">
+                                <button id="calcBtn" class="btn wide">احسب ستارتك الآن</button>
+                            </div>
+
+                        </div>
+
+                        <div id="resultCardWrap" style="display:none;margin-top:14px">
+                            <div class="card result-box" id="resultCard"></div>
+                            <button class="btn wide" id="orderBtn" style="margin-top:10px">اطلب الآن</button>
+                        </div>
+                    </div>
+
+                    <div class="right">
+                        <div class="card">
+                            <div class="section-title">معلومات مهمة</div>
+                            <p class="text-muted">- الأسعار الظاهرة تقديرية وسيتم تأكيدها بعد القياس.</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </section>
     <!-- Gallery Section -->
     <section class="gallery" id="gallery">
         <div class="container">
@@ -704,6 +793,124 @@
                 // Close mobile menu if open
                 mainNav.classList.remove('active');
             });
+        });
+
+        //////////////////////////////////////////
+        /////////////////////////////////////////
+        const CONFIG = {
+            fabricPrices: { "شيفون": 35, "مخمل": 55, "جاكار": 60, "كتان": 40, "ساتان": 50, "عازل للشمس": 45 },
+            seamAllowance_m: 0.3,
+            tailoringNearPrice: 125,
+            tailoringFarPrice: 250,
+            nearAreas: ["دبي مارينا", "جميرا", "البرشاء", "وسط المدينة", "الخليج التجاري", "ديرة", "الحدائق"],
+            VAT: 0.05
+        };
+
+        // بناء أنواع القماش (سعر خلف الكرت)
+        const fabricGrid = document.getElementById("fabricGrid");
+        for (const name in CONFIG.fabricPrices) {
+            const div = document.createElement("div");
+            div.className = "fabric-card";
+            div.dataset.fabric = name;
+            div.dataset.price = CONFIG.fabricPrices[name];
+            div.innerHTML = `<div style="font-weight:700">${name}</div>`;
+            div.addEventListener("click", () => {
+                document.querySelectorAll(".fabric-card").forEach(c => c.classList.remove("selected"));
+                div.classList.add("selected");
+            });
+            fabricGrid.appendChild(div);
+        }
+
+        // المناطق
+        const selectArea = document.getElementById("selectArea");
+        CONFIG.nearAreas.forEach(a => { const opt = document.createElement("option"); opt.value = a; opt.textContent = a; selectArea.appendChild(opt); });
+        const otherOpt = document.createElement("option"); otherOpt.value = "أخرى"; otherOpt.textContent = "أخرى"; selectArea.appendChild(otherOpt);
+
+        function showError(id, show) { document.getElementById(id).style.display = show ? "block" : "none"; }
+        function getSelectedFabric() { const sel = document.querySelector(".fabric-card.selected"); if (!sel) return null; return { name: sel.dataset.fabric, price: parseFloat(sel.dataset.price) }; }
+        function isNearArea(areaName) { return CONFIG.nearAreas.includes(areaName); }
+
+        // الحساب
+        document.getElementById("calcBtn").addEventListener("click", function () {
+            document.getElementById("resultCardWrap").style.display = "none";
+
+            const width = parseFloat(document.getElementById("inputWidth").value);
+            const height = parseFloat(document.getElementById("inputHeight").value);
+            const fabric = getSelectedFabric();
+            const gather = parseFloat(document.getElementById("selectGather").value);
+            const area = document.getElementById("selectArea").value;
+            const rollWidth = parseFloat(document.getElementById("fabricRoll").value) / 100;
+            let manualPrice = parseFloat(document.getElementById("manualPrice").value);
+
+            let ok = true;
+            if (!width || width <= 0) { showError("errWidth", true); ok = false } else showError("errWidth", false);
+            if (!height || height <= 0) { showError("errHeight", true); ok = false } else showError("errHeight", false);
+            if (!fabric) { showError("errFabric", true); ok = false } else showError("errFabric", false);
+            if (!ok) return;
+
+            const realWidth = (width / 100) + CONFIG.seamAllowance_m;
+            const realHeight = (height / 100) + CONFIG.seamAllowance_m;
+
+            let totalFabricMeters = Math.ceil((realWidth * gather / rollWidth) * realHeight); // تقريب لأعلى عدد صحيح
+
+            const tailoringPerMeter = isNearArea(area) ? CONFIG.tailoringNearPrice : CONFIG.tailoringFarPrice;
+            const fabricPricePerMeter = manualPrice > 0 ? manualPrice : fabric.price;
+
+            const fabricCost = totalFabricMeters * fabricPricePerMeter;
+            const tailoringCost = totalFabricMeters * tailoringPerMeter;
+            const totalCost = (fabricCost + tailoringCost) * (1 + CONFIG.VAT);
+
+            const rCard = document.getElementById("resultCard");
+            rCard.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div style="text-align:right">
+        <div style="font-weight:700;font-size:16px">النتيجة التقريبية</div>
+        <div class="muted">تأكد من المقاسات قبل الطلب</div>
+      </div>
+      <div style="text-align:left">
+        <div style="font-size:18px;font-weight:800;color:var(--primary)">${totalCost.toFixed(2)} <span class="muted" style="font-weight:600">درهم</span></div>
+        <div class="muted" style="font-size:13px">السعر الكلي + 5% ضريبة</div>
+      </div>
+    </div>
+    <hr style="margin:12px 0;border:none;border-top:1px solid #f0f0f0"/>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between">
+      <div style="flex:1">
+        <div class="muted">العرض (سم)</div>
+        <div style="font-weight:700">${width}</div>
+      </div>
+      <div style="flex:1">
+        <div class="muted">الارتفاع (سم)</div>
+        <div style="font-weight:700">${height}</div>
+      </div>
+      <div style="flex:1">
+        <div class="muted">كمية القماش المطلوبة (م)</div>
+        <div style="font-weight:700">${totalFabricMeters}</div>
+      </div>
+    </div>
+  `;
+            document.getElementById("resultCardWrap").style.display = "block";
+            window.scrollTo({ top: document.getElementById("resultCardWrap").offsetTop - 20, behavior: "smooth" });
+        });
+
+        // رابط طلب واتساب
+        document.getElementById("orderBtn").addEventListener("click", () => {
+            const width = document.getElementById("inputWidth").value;
+            const height = document.getElementById("inputHeight").value;
+            const fabric = document.querySelector(".fabric-card.selected")?.dataset.fabric;
+            const roll = document.getElementById("fabricRoll").value;
+            const gather = document.getElementById("selectGather").value;
+            const area = document.getElementById("selectArea").value;
+
+            let waMsg = `أريد طلب ستارة:
+العرض: ${width} سم
+الارتفاع: ${height} سم
+نوع القماش: ${fabric}
+عرض رول القماش: ${roll} سم
+نسبة الكرمشة: ${gather}
+المنطقة: ${area}`;
+
+            const waLink = `https://wa.me/971502528080?text=${encodeURIComponent(waMsg)}`;
+            window.open(waLink, "_blank");
         });
     </script>
 </body>

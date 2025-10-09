@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>حاسبة ستائر - معرض الفارس</title>
+    <style>
+        :root {
+            --primary: #c19a6b;
+            --primary-dark: #a3784f;
+            --bg: #f7f7f7;
+            --card: #ffffff;
+            --muted: #777;
+            --danger: #e74c3c;
+            --success: #2ecc71;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: "Cairo", Arial, sans-serif;
+            background: var(--bg);
+            color: #222;
+        }
+
+        header {
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            padding: 28px 16px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 20px
+        }
+
+        header p {
+            margin: 8px 0 0;
+            opacity: 0.95
+        }
+
+        main {
+            max-width: 980px;
+            margin: 20px auto;
+            padding: 0 16px
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        @media(min-width:900px) {
+            .grid {
+                grid-template-columns: 1fr 420px
+            }
+        }
+
+        .left,
+        .right {
+            background: transparent
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 6px 18px rgba(20, 20, 20, 0.06);
+        }
+
+        .section-title {
+            font-weight: 700;
+            margin: 6px 0 12px
+        }
+
+        label.small {
+            display: block;
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 6px
+        }
+
+        input[type="number"],
+        select,
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            font-size: 15px;
+        }
+
+        textarea {
+            min-height: 90px;
+            resize: vertical
+        }
+
+        .fabric-grid {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap
+        }
+
+        .fabric-card {
+            border: 1px solid #eee;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            flex: 1 1 30%;
+            min-width: 110px;
+            text-align: center;
+            background: #fff;
+        }
+
+        .fabric-card.selected {
+            border-color: var(--primary);
+            box-shadow: 0 6px 14px rgba(193, 154, 107, 0.12)
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .btn.secondary {
+            background: #fff;
+            color: var(--primary);
+            border: 1px solid #eee
+        }
+
+        .btn.wide {
+            width: 100%
+        }
+
+        .result-box {
+            background: #fff;
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05)
+        }
+
+        .small-info {
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: 8px
+        }
+
+        .modal-back {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1200
+        }
+
+        .modal {
+            background: #fff;
+            border-radius: 10px;
+            max-width: 520px;
+            width: 100%;
+            padding: 18px;
+            margin: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25)
+        }
+
+        .flex-row {
+            display: flex;
+            gap: 8px;
+            align-items: center
+        }
+
+        .text-muted {
+            color: var(--muted)
+        }
+
+        .note {
+            font-size: 13px;
+            color: #666;
+            margin-top: 8px
+        }
+
+        .success {
+            background: var(--success);
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 8px
+        }
+
+        .error {
+            color: var(--danger);
+            font-size: 13px;
+            margin-top: 6px;
+            display: none
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+
+        <a href="index.html">
+            <h1>احسب ستارتك في ثواني — اعرف السعر قبل ما تتصل</h1>
+        </a>
+        <p>أدخل المقاسات، اختار القماش والمنطقة — واحصل على السعر فوراً.</p>
+    </header>
+    <main>
+        <div class="grid">
+            <div class="left">
+                <div class="card">
+                    <div class="section-title">تفاصيل الستارة</div>
+
+                    <!-- العرض -->
+                    <div style="margin-bottom:12px">
+                        <label class="small">1. عرض الستارة (سم)</label>
+                        <input type="number" id="inputWidth" step="1" min="10" placeholder="مثال: 200" />
+                        <div class="error" id="errWidth">من فضلك أدخل عرض صحيح.</div>
+                    </div>
+
+                    <!-- الارتفاع -->
+                    <div style="margin-bottom:12px">
+                        <label class="small">2. ارتفاع الستارة (سم)</label>
+                        <input type="number" id="inputHeight" step="1" min="10" placeholder="مثال: 270" />
+                        <div class="error" id="errHeight">من فضلك أدخل ارتفاع صحيح.</div>
+                    </div>
+
+                    <!-- نوع القماش -->
+                    <div style="margin-bottom:12px">
+                        <label class="small">3. نوع القماش</label>
+                        <div class="fabric-grid" id="fabricGrid"></div>
+                        <div class="error" id="errFabric">اختر نوع القماش.</div>
+                    </div>
+
+                    <!-- عرض رول القماش -->
+                    <div style="margin-bottom:12px">
+                        <label class="small">4. عرض رول القماش (سم)</label>
+                        <select id="fabricRoll">
+                            <option value="140">140 سم</option>
+                            <option value="280">280 سم</option>
+                            <option value="320">320 سم</option>
+                        </select>
+                    </div>
+
+                    <!-- سعر المتر -->
+                    <div style="margin-bottom:12px">
+                        <label class="small">5. سعر متر القماش (اختياري)</label>
+                        <input type="number" id="manualPrice" placeholder="اتركه فارغ للحساب التلقائي" />
+                    </div>
+
+                    <!-- نسبة الكرمشة -->
+                    <div style="margin-bottom:12px">
+                        <label class="small">6. نسبة الكرمشة</label>
+                        <select id="selectGather">
+                            <option value="1">سادة</option>
+                            <option value="2">×2</option>
+                            <option value="2.5" selected>×2.5</option>
+                            <option value="3">×3</option>
+                        </select>
+                    </div>
+
+                    <!-- المنطقة -->
+                    <div style="margin-bottom:12px">
+                        <label class="small">7. اختر المنطقة (لتحديد سعر التفصيل)</label>
+                        <select id="selectArea"></select>
+                        <div class="note">اختيار "أخرى" يُحتسب كسعر تفصيل بعيد (250 درهم/متر).</div>
+                    </div>
+
+                    <div style="margin-top:12px">
+                        <button id="calcBtn" class="btn wide">احسب ستارتك الآن</button>
+                    </div>
+                    <div class="small-info">النظام يضيف تلقائياً 30 سم خياطة على العرض والارتفاع للحساب الداخلي.</div>
+                </div>
+
+                <div id="resultCardWrap" style="display:none;margin-top:14px">
+                    <div class="card result-box" id="resultCard"></div>
+                    <button class="btn wide" id="orderBtn" style="margin-top:10px">اطلب الآن</button>
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="card">
+                    <div class="section-title">معلومات مهمة</div>
+                    <p class="text-muted">- الأسعار الظاهرة تقديرية وسيتم تأكيدها بعد القياس.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const CONFIG = {
+            fabricPrices: { "شيفون": 35, "مخمل": 55, "جاكار": 60, "كتان": 40, "ساتان": 50, "عازل للشمس": 45 },
+            seamAllowance_m: 0.3,
+            tailoringNearPrice: 125,
+            tailoringFarPrice: 250,
+            nearAreas: ["دبي مارينا", "جميرا", "البرشاء", "وسط المدينة", "الخليج التجاري", "ديرة", "الحدائق"],
+            VAT: 0.05
+        };
+
+        // بناء أنواع القماش (سعر خلف الكرت)
+        const fabricGrid = document.getElementById("fabricGrid");
+        for (const name in CONFIG.fabricPrices) {
+            const div = document.createElement("div");
+            div.className = "fabric-card";
+            div.dataset.fabric = name;
+            div.dataset.price = CONFIG.fabricPrices[name];
+            div.innerHTML = `<div style="font-weight:700">${name}</div>`;
+            div.addEventListener("click", () => {
+                document.querySelectorAll(".fabric-card").forEach(c => c.classList.remove("selected"));
+                div.classList.add("selected");
+            });
+            fabricGrid.appendChild(div);
+        }
+
+        // المناطق
+        const selectArea = document.getElementById("selectArea");
+        CONFIG.nearAreas.forEach(a => { const opt = document.createElement("option"); opt.value = a; opt.textContent = a; selectArea.appendChild(opt); });
+        const otherOpt = document.createElement("option"); otherOpt.value = "أخرى"; otherOpt.textContent = "أخرى"; selectArea.appendChild(otherOpt);
+
+        function showError(id, show) { document.getElementById(id).style.display = show ? "block" : "none"; }
+        function getSelectedFabric() { const sel = document.querySelector(".fabric-card.selected"); if (!sel) return null; return { name: sel.dataset.fabric, price: parseFloat(sel.dataset.price) }; }
+        function isNearArea(areaName) { return CONFIG.nearAreas.includes(areaName); }
+
+        // الحساب
+        document.getElementById("calcBtn").addEventListener("click", function () {
+            document.getElementById("resultCardWrap").style.display = "none";
+
+            const width = parseFloat(document.getElementById("inputWidth").value);
+            const height = parseFloat(document.getElementById("inputHeight").value);
+            const fabric = getSelectedFabric();
+            const gather = parseFloat(document.getElementById("selectGather").value);
+            const area = document.getElementById("selectArea").value;
+            const rollWidth = parseFloat(document.getElementById("fabricRoll").value) / 100;
+            let manualPrice = parseFloat(document.getElementById("manualPrice").value);
+
+            let ok = true;
+            if (!width || width <= 0) { showError("errWidth", true); ok = false } else showError("errWidth", false);
+            if (!height || height <= 0) { showError("errHeight", true); ok = false } else showError("errHeight", false);
+            if (!fabric) { showError("errFabric", true); ok = false } else showError("errFabric", false);
+            if (!ok) return;
+
+            const realWidth = (width / 100) + CONFIG.seamAllowance_m;
+            const realHeight = (height / 100) + CONFIG.seamAllowance_m;
+
+            let totalFabricMeters = Math.ceil((realWidth * gather / rollWidth) * realHeight); // تقريب لأعلى عدد صحيح
+
+            const tailoringPerMeter = isNearArea(area) ? CONFIG.tailoringNearPrice : CONFIG.tailoringFarPrice;
+            const fabricPricePerMeter = manualPrice > 0 ? manualPrice : fabric.price;
+
+            const fabricCost = totalFabricMeters * fabricPricePerMeter;
+            const tailoringCost = totalFabricMeters * tailoringPerMeter;
+            const totalCost = (fabricCost + tailoringCost) * (1 + CONFIG.VAT);
+
+            const rCard = document.getElementById("resultCard");
+            rCard.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div style="text-align:right">
+        <div style="font-weight:700;font-size:16px">النتيجة التقريبية</div>
+        <div class="muted">تأكد من المقاسات قبل الطلب</div>
+      </div>
+      <div style="text-align:left">
+        <div style="font-size:18px;font-weight:800;color:var(--primary)">${totalCost.toFixed(2)} <span class="muted" style="font-weight:600">درهم</span></div>
+        <div class="muted" style="font-size:13px">السعر الكلي + 5% ضريبة</div>
+      </div>
+    </div>
+    <hr style="margin:12px 0;border:none;border-top:1px solid #f0f0f0"/>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between">
+      <div style="flex:1">
+        <div class="muted">العرض (سم)</div>
+        <div style="font-weight:700">${width}</div>
+      </div>
+      <div style="flex:1">
+        <div class="muted">الارتفاع (سم)</div>
+        <div style="font-weight:700">${height}</div>
+      </div>
+      <div style="flex:1">
+        <div class="muted">كمية القماش المطلوبة (م)</div>
+        <div style="font-weight:700">${totalFabricMeters}</div>
+      </div>
+    </div>
+  `;
+            document.getElementById("resultCardWrap").style.display = "block";
+            window.scrollTo({ top: document.getElementById("resultCardWrap").offsetTop - 20, behavior: "smooth" });
+        });
+
+        // رابط طلب واتساب
+        document.getElementById("orderBtn").addEventListener("click", () => {
+            const width = document.getElementById("inputWidth").value;
+            const height = document.getElementById("inputHeight").value;
+            const fabric = document.querySelector(".fabric-card.selected")?.dataset.fabric;
+            const roll = document.getElementById("fabricRoll").value;
+            const gather = document.getElementById("selectGather").value;
+            const area = document.getElementById("selectArea").value;
+
+            let waMsg = `أريد طلب ستارة:
+العرض: ${width} سم
+الارتفاع: ${height} سم
+نوع القماش: ${fabric}
+عرض رول القماش: ${roll} سم
+نسبة الكرمشة: ${gather}
+المنطقة: ${area}`;
+
+            const waLink = `https://wa.me/971502528080?text=${encodeURIComponent(waMsg)}`;
+            window.open(waLink, "_blank");
+        });
+    </script>
+</body>
+
+</html>
